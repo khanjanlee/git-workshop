@@ -14,3 +14,12 @@ git add *
 git commit -m "commit to developement branch"
 git push  --set-upstream origin developement
 git push 
+
+# workshop 1 is done
+
+echo "Workshop 2 start"
+
+git checkout -b new-feature
+git add *
+git commit -m "push to workshop 2"
+git push --set-upstream origin new-feature
