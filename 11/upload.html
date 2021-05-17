@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/upload" encType="multipart/form-data" method="POST">
+     <label for="upload1">Select File</label> <input onchange="check_file()"  id="upload1" name="upload1" type="file" src="" alt=""><br>
+     <span id="message"></span> <br>
+    <input id="sub" type="submit" value="Upload" disabled>
+    </form>
+</body>
+<script>
+    function set_msg(msg,color,disabled){
+        document.getElementById("message").innerHTML = `<i style="color:${color}">${msg}</i>`
+        document.getElementById("sub").disabled = disabled
+    }
+    function check_file(){
+        var f = document.getElementById("upload1")
+        if (f.files.length!=1){
+            set_msg("please select a file","red",true)
+            return
+        }
+        
+        else {
+            fp = f.files[0]
+            if (fp.size > 1000000 ){
+                set_msg(`wrong size  ${fp.size/1000/1000}mb, size must  be <1mb`,'red',true)
+                return
+
+            }
+            if (fp.type.toString() != "image/jpeg" && fp.type.toString() != "image/png" ){
+                set_msg("Only JPG/PNG files are supported","red",true)
+                return
+            }
+            set_msg("file supported","green",false)
+            
+        }
+    }
+</script>
+</html>
